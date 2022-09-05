@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-// import Paginaton from '@mui/material/Pagination';
+import Paginaton from '@mui/material/Pagination';
+import { Box, Stack, Grid } from '@mui/material';
 
 import Table from '../components/Table';
 
@@ -37,18 +38,11 @@ const CoinList = () => {
       style={{
         padding: '10px 20px',
       }}
-      className='py-10 px-20 bg-red-500'
+      className='p-10 lg:px-20 py-10 space-y-4 bg-[#F3F7FB] flex flex-col justify-center'
     >
-      <h1 className='text-6xl'>Coin List Page</h1>
-      <div
-        style={{
-          boxShadow: '0px 4px 8px rgba(0, 148, 255, 0.25)',
-          borderRadius: '10px',
-          backgroundColor: 'white',
-          padding: '40px',
-        }}
-      >
-        <span>Coin List</span>
+      <h1 className='font-bold text-[10px] text-[#ACBCCF]'>Coin List Page</h1>
+      <div className='bg-white rounded-md p-8 space-y-5 container-box-shadow'>
+        <h2 className='text-[#2569A5] font-bold'>Coin List</h2>
         <div
           style={{
             display: 'flex',
@@ -71,7 +65,16 @@ const CoinList = () => {
           />
         </div>
         <Table data={coinsData} />
-        {/* <Paginaton count={10} variant='outlined' shape='rounded' /> */}
+
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-end',
+          }}
+        >
+          <Paginaton count={10} variant='outlined' shape='rounded' />
+        </Box>
       </div>
     </div>
   );
