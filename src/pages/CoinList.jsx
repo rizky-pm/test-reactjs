@@ -6,6 +6,8 @@ import { Box, Stack, Grid } from '@mui/material';
 import Table from '../components/Table';
 
 const CoinList = () => {
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(4);
   const [data, setData] = useState([]);
 
   console.log(data);
@@ -25,9 +27,11 @@ const CoinList = () => {
     return data.slice((pageNumber - 1) * pageSize, pageNumber * pageSize);
   };
 
-  const coinsData = paginate(data, 4, 1);
+  const coinsData = paginate(data, pageSize, page);
 
-  console.log(coinsData);
+  const handleChangePage = (e, pg) => {
+    setPage(pg);
+  };
 
   useEffect(() => {
     fetchData();
@@ -73,7 +77,12 @@ const CoinList = () => {
             alignItems: 'flex-end',
           }}
         >
-          <Paginaton count={10} variant='outlined' shape='rounded' />
+          <Paginaton
+            count={10}
+            variant='outlined'
+            shape='rounded'
+            onChange={handleChangePage}
+          />
         </Box>
       </div>
     </div>
