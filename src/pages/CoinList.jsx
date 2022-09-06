@@ -93,12 +93,7 @@ const CoinList = () => {
   }, []);
 
   return (
-    <div
-      style={{
-        padding: '10px 20px',
-      }}
-      className='p-10 lg:px-20 py-10 space-y-4 bg-[#F3F7FB] flex flex-col justify-center'
-    >
+    <div className='p-10 lg:px-20 py-10 space-y-4 bg-[#F3F7FB] flex flex-col justify-center'>
       <h1 className='font-bold text-[10px] text-[#ACBCCF]'>Coin List Page</h1>
       <div className='bg-white rounded-md p-8 space-y-5 container-box-shadow'>
         <h2 className='text-[#2569A5] font-bold'>Coin List</h2>
@@ -145,7 +140,11 @@ const CoinList = () => {
           </button>
         </Stack>
 
-        <Table data={coinsData} />
+        {data.length ? (
+          <Table data={coinsData} />
+        ) : (
+          <h1 className='font-bold text-2xl text-center'>Loading...</h1>
+        )}
 
         <Box
           sx={{

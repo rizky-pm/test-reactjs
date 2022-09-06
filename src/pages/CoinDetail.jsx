@@ -9,7 +9,7 @@ const CoinDetail = () => {
   }
 
   return (
-    <div className='px-20 py-10 font-lato space-y-4 bg-[#F3F7FB] h-[79.2vh] flex flex-col justify-center'>
+    <div className='px-20 py-10 space-y-4 bg-[#F3F7FB] h-[79.2vh] flex flex-col justify-center'>
       <h1 className='font-bold text-[10px] text-[#ACBCCF]'>Coin Detail</h1>
 
       <div className='bg-white rounded-md p-8 space-y-5 container-box-shadow h-[499px]'>

@@ -3,4 +3,23 @@
 @tailwind utilities;
 
 @layer components {
+  .container-box-shadow {
+    box-shadow: 0px 4px 8px rgba(0, 148, 255, 0.25);
+  }
+
+  .navbar-box-shadow {
+    box-shadow: 0px 4px 19px rgba(0, 0, 0, 0.07);
+  }
+
+  .th-width {
+    @apply nth-first:min-w-[7.7306rem] nth-second:min-w-[6.5525rem] nth-third:min-w-[4.8925rem] nth-fourth:min-w-[7.7306rem] nth-fifth:min-w-[5.95rem] nth-sixth:min-w-[7.7306rem] nth-seventh:min-w-[7.7306rem];
+  }
+
+  .td-width {
+    @apply nth-type-first:max-w-[7.7306rem] nth-type-second:max-w-[6.5525rem] nth-type-third:max-w-[4.8925rem] nth-type-fourth:max-w-[7.7306rem] nth-type-fifth:max-w-[5.95rem] nth-type-sixth:max-w-[7.7306rem] nth-type-seventh:max-w-[7.7306rem];
+  }
+
+  .is-navlink-active {
+    @apply className='border-b-4 border-[#2569A5] h-4';
+  }
 }
