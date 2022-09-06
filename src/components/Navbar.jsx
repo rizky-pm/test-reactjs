@@ -1,34 +1,28 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
+  let activeStyle = {
+    borderBottom: '.25rem solid #2569A5',
+  };
+
   return (
-    <div
-      style={{
-        position: 'relative',
-        padding: '100px 40px',
-        boxShadow: '0px 4px 19px rgba(0, 0, 0, 0.07)',
-      }}
-      className='py-10 px-20 space-x-20'
-    >
-      <div style={{ position: 'absolute', bottom: 0 }}>
-        <span
-          style={{
-            marginRight: '40px',
-          }}
+    <nav className='relative p-10 lg:p-20 navbar-box-shadow'>
+      <div className='absolute bottom-0 space-x-10'>
+        <NavLink
+          to='/'
+          style={({ isActive }) => (isActive ? activeStyle : undefined)}
         >
           Home
-        </span>
-        <span
-          style={{
-            borderBottom: '4px #2569A5 solid',
-            color: '#1E5387',
-            fontWeight: 'bold',
-          }}
+        </NavLink>
+        <NavLink
+          to='/coin-list'
+          style={({ isActive }) => (isActive ? activeStyle : undefined)}
         >
           Coin List
-        </span>
+        </NavLink>
       </div>
-    </div>
+    </nav>
   );
 };
 
