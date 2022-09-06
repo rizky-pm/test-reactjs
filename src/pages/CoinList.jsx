@@ -143,7 +143,9 @@ const CoinList = () => {
         {data.length ? (
           <Table data={coinsData} />
         ) : (
-          <h1 className='font-bold text-2xl text-center'>Loading...</h1>
+          <div className='h-[79.2vh]'>
+            <h1 className='font-bold text-2xl text-center'>Loading...</h1>
+          </div>
         )}
 
         <Box
