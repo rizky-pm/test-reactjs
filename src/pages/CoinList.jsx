@@ -30,11 +30,48 @@ const CoinList = () => {
   };
 
   const paginate = (data, pageSize, pageNumber) => {
-    return data.slice((pageNumber - 1) * pageSize, pageNumber * pageSize);
+    if (selectedValue === '' && search === '') {
+      return data.slice((pageNumber - 1) * pageSize, pageNumber * pageSize);
+    }
+
+    let newArr = data.filter((el) => {
+      return el.type === selectedValue;
+    });
+
+    let newlyArr = [];
+
+    if (newArr.length === 0) {
+      newlyArr = data.filter((el) => {
+        return el?.name.toLocaleLowerCase().includes(search);
+      });
+    } else {
+      newlyArr = newArr.filter((el) => {
+        return el?.name.toLocaleLowerCase().includes(search);
+      });
+    }
+
+    return newlyArr.slice((pageNumber - 1) * pageSize, pageNumber * pageSize);
   };
 
-  const coinsData = paginate(data, pageSize, page);
-  console.log(page);
+  const getTotalPage = (array) => {
+    let newArr = array.filter((el) => {
+      return el.type === selectedValue;
+    });
+
+    let newlyArr = [];
+
+    if (newArr.length === 0) {
+      newlyArr = array.filter((el) => {
+        return el?.name.toLocaleLowerCase().includes(search);
+      });
+    } else {
+      newlyArr = newArr.filter((el) => {
+        return el?.name.toLocaleLowerCase().includes(search);
+      });
+    }
+
+    return newlyArr.length;
+  };
 
   const handleChangePage = (e, pg) => {
     setPage(pg);
@@ -47,6 +84,9 @@ const CoinList = () => {
   const handleSelect = (e) => {
     setSelectedValue(e.target.value);
   };
+
+  const coinsData = paginate(data, pageSize, page);
+  const totalPage = getTotalPage(data);
 
   useEffect(() => {
     fetchData();
@@ -115,7 +155,9 @@ const CoinList = () => {
           }}
         >
           <Paginaton
-            count={10}
+            count={
+              Math.ceil(totalPage / pageSize) || Math.ceil(totalPage / pageSize)
+            }
             variant='outlined'
             shape='rounded'
             onChange={handleChangePage}
