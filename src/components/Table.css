@@ -1,0 +1,14 @@
+table {
+  border-collapse: collapse;
+  width: 100%;
+  border-radius: 10px;
+}
+
+table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #3783c6;
+  color: white;
+  height: 54.03px;
+}

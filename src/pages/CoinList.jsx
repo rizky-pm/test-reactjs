@@ -2,15 +2,21 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Paginaton from '@mui/material/Pagination';
 import { Box, Stack, Grid } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
+import { TextField, InputAdornment } from '@mui/material';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import InputLabel from '@mui/material/InputLabel';
 
 import Table from '../components/Table';
 
 const CoinList = () => {
+  const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(4);
-  const [data, setData] = useState([]);
-
-  console.log(data);
+  const [search, setSearch] = useState('');
+  const [selectedValue, setSelectedValue] = useState('');
 
   const fetchData = async () => {
     return await axios
@@ -28,9 +34,18 @@ const CoinList = () => {
   };
 
   const coinsData = paginate(data, pageSize, page);
+  console.log(page);
 
   const handleChangePage = (e, pg) => {
     setPage(pg);
+  };
+
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+  };
+
+  const handleSelect = (e) => {
+    setSelectedValue(e.target.value);
   };
 
   useEffect(() => {
@@ -47,27 +62,49 @@ const CoinList = () => {
       <h1 className='font-bold text-[10px] text-[#ACBCCF]'>Coin List Page</h1>
       <div className='bg-white rounded-md p-8 space-y-5 container-box-shadow'>
         <h2 className='text-[#2569A5] font-bold'>Coin List</h2>
-        <div
-          style={{
-            display: 'flex',
-            gap: 10,
-          }}
+
+        <Stack
+          component={'div'}
+          direction={{ xs: 'column', md: 'row' }}
+          spacing={2}
         >
-          <input
-            style={{
-              border: '2px solid #E5E5E5',
-            }}
-            type='text'
-            placeholder='Select'
-          />
-          <input
-            type='text'
+          <Box sx={{ minWidth: 215 }}>
+            <FormControl fullWidth size='small'>
+              <InputLabel id='select-label'>Select Type</InputLabel>
+              <Select
+                labelId='select-label'
+                id='select'
+                value={selectedValue}
+                label='Select Type'
+                onChange={handleSelect}
+              >
+                <MenuItem value={''}>
+                  <em>All</em>
+                </MenuItem>
+                <MenuItem value={'coin'}>Coin</MenuItem>
+                <MenuItem value={'token'}>Token</MenuItem>
+              </Select>
+            </FormControl>
+          </Box>
+          <TextField
+            id='outlined-basic'
+            variant='outlined'
             placeholder='Search'
-            style={{
-              border: '2px solid #E5E5E5',
+            onChange={(e) => handleSearch(e)}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position='start'>
+                  <SearchIcon />
+                </InputAdornment>
+              ),
             }}
+            size='small'
           />
-        </div>
+          <button className='py-2 px-3 bg-[#2569A5] w-[82px] rounded-sm text-white'>
+            Search
+          </button>
+        </Stack>
+
         <Table data={coinsData} />
 
         <Box
